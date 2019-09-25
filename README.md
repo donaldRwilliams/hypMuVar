@@ -1,2 +1,2 @@
-# hypMuWPvar
-Bayesian Hypothesis Testing for Mean and Within-Person Variance Relations
+# hypMuVar
+Bayesian Hypothesis Testing of Mean and Variance Relations
