@@ -1,6 +1,3 @@
 
-hypMuVar
-========
-
-Bayesian Hypothesis Testing of Mean-Variance Relations
-------------------------------------------------------
+hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
+================================================================
