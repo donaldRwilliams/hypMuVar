@@ -1765,7 +1765,9 @@ summary.melsm <- function(object, cred = 0.95, ...){
     cat("Rho Test:", object$rho_test, "\n")
   }
   cat("Credible Interval:", cred, "\n")
+  if(!is.null( object$BMA)){
   cat("Bayesian Model Averaged:", "(Top", object$top, "Models)", "\n")
+  }
   cat("----\n")
   cat("Call:\n")
   print(object$call)
