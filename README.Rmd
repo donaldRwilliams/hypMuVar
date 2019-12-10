@@ -1,12 +1,19 @@
 ---
-title: "README"
-author: "Donald R. Williams"
-date: "December 10, 2019"
-output: md_document
+output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  dev = "png",
+  dpi = 500,
+  # fig.asp = 0.8,
+  # fig.width = 7,
+  # out.width = "60%",
+  fig.align = "center"
+)
 ```
 
 ## R Markdown
