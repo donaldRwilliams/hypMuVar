@@ -2,6 +2,10 @@
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ----------------------------------------------------------------
 
+``` r
+library(hypMuVar)
+```
+
 ### Overview
 
 ### Installation
@@ -84,4 +88,81 @@ summary(fit)
 #> k1: 'spike' 
 #> k2: positive slab 
 #> k3: negative slab
+```
+
+#### Marginal Bayes Factors
+
+k2 (positive component) vs. the compliment
+
+``` r
+marginal_bf(fit, H1 = "k2")
+#> hypMuVar: Bayesian Hypothesis Testing 
+#>           of Mean--Variance Relations
+#> Model: MELSM
+#> Mixture: SSVS 
+#> Rho Test: muvar 
+#> Hypotheses
+#> H1: rho = k2 
+#> H2: rho = compliment 
+#> -----
+#>  Correlation                                                        BF_12
+#>  rho_01: location_(Intercept)_location_congruencyincongruent           NA
+#>  rho_02: location_(Intercept)_scale_(Intercept)                       Inf
+#>  rho_03: location_(Intercept)_scale_congruencyincongruent           0.000
+#>  rho_12: location_congruencyincongruent_scale_(Intercept)           0.286
+#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent   Inf
+#>  rho_23: scale_(Intercept)_scale_congruencyincongruent                 NA
+```
+
+k2 (positive component) vs. k1(null component)
+
+``` r
+# note testing against the compliment is preferable
+marginal_bf(fit, H1 = "k2", H2 = "k1")
+#> hypMuVar: Bayesian Hypothesis Testing 
+#>           of Mean--Variance Relations
+#> Model: MELSM
+#> Mixture: SSVS 
+#> Rho Test: muvar 
+#> Hypotheses
+#> H1: rho = k2 
+#> H2: rho = k1 
+#> -----
+#>  Correlation                                                        BF_12
+#>  rho_01: location_(Intercept)_location_congruencyincongruent           NA
+#>  rho_02: location_(Intercept)_scale_(Intercept)                       Inf
+#>  rho_03: location_(Intercept)_scale_congruencyincongruent           0.000
+#>  rho_12: location_congruencyincongruent_scale_(Intercept)           0.255
+#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent   Inf
+#>  rho_23: scale_(Intercept)_scale_congruencyincongruent                 NA
+```
+
+#### Posterior Model Probabilities
+
+``` r
+model_prob(fit)
+#> hypMuVar: Bayesian Hypothesis Testing 
+#>           of Mean--Variance Relations
+#> Model: MELSM
+#> Mixture: SSVS 
+#> Rho Test: muvar 
+#> Components: 3 
+#> ----
+#> 
+#>         Post.prob    BF.1i rho_02 rho_03 rho_12 rho_13
+#> Model 1     0.482    1.000      2      3      1      2
+#> Model 2     0.381    1.265      2      3      3      2
+#> Model 3     0.119    4.051      2      3      2      2
+#> Model 4     0.008   59.481      2      1      1      2
+#> Model 5     0.006   85.274      2      1      2      2
+#> Model 6     0.004  118.233      2      1      3      2
+#> Model 7     0.000 2753.143      2      2      3      2
+#> Model 8     0.000 3212.000      2      2      1      2
+#> Model 9     0.000 3854.400      2      2      2      2
+#> ----
+#> 
+#> rho_02: location_(Intercept)_scale_(Intercept)
+#> rho_03: location_(Intercept)_scale_congruencyincongruent
+#> rho_12: location_congruencyincongruent_scale_(Intercept)
+#> rho_13: location_congruencyincongruent_scale_congruencyincongruent
 ```

@@ -49,6 +49,12 @@ marginal_bf <- function(object,
 
       # post probs
       post_probs <- rho_summary[,6:8]
+      post_probs <- sapply(post_probs,as.numeric)
+      # set 0s to NA (off-diagonal elements)
+      # post_probs[post_probs == ""] <- NA
+
+      # remove NA
+      # post_probs <- na.omit(post_probs)
 
       # h1 post probs
       H1_probs <- post_probs[,grep(H1, x = colnames(post_probs))]
@@ -56,7 +62,8 @@ marginal_bf <- function(object,
       # compliment
       if(H2 == "compliment"){
 
-        BF_12 <- (H1_probs / rowSums(post_probs[,-grep(H1, x = colnames(post_probs))])) / 0.5
+        BF_12 <- (H1_probs / rowSums(post_probs[,-grep(H1,
+                                                       x = colnames(post_probs))])) / 0.5
 
       } else {
 

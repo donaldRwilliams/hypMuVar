@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
 
 
 ## hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
+```{r}
+library(hypMuVar)
+```
 
 ### Overview
 ### Installation
@@ -21,6 +24,8 @@ knitr::opts_chunk$set(
 # install.packages("devtools")
 devtools::install_github("donaldRwilliams/hypMuVar")
 ```
+
+
 
 ### Random slopes for the location and scale:
 ```{r,eval=F}
@@ -42,3 +47,20 @@ load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit.Rdata")
 options(width = 250)
 summary(fit)
 ```
+
+#### Marginal Bayes Factors
+k2 (positive component) vs. the compliment
+```{r}
+marginal_bf(fit, H1 = "k2")
+```
+
+k2 (positive component) vs. k1(null component)
+```{r}
+# note testing against the compliment is preferable
+marginal_bf(fit, H1 = "k2", H2 = "k1")
+```
+
+#### Posterior Model Probabilities
+```{r}
+model_prob(fit)
+````
