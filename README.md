@@ -1,17 +1,9 @@
 
-<style>
-pre {
-  overflow-x: auto;
-}
-pre code {
-  word-wrap: normal;
-  white-space: pre;
-}
-</style>
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ----------------------------------------------------------------
 
 Random slopes for the location and scale:
+=========================================
 
 ``` r
 fit <- melsm(fixed_location = rt ~  congruency,
@@ -44,36 +36,22 @@ summary(fit)
 #> 
 #> Random Effects Correlations
 #> Posterior Distirbutions
-#>                                                                    
-#>  rho_01: location_(Intercept)_location_congruencyincongruent       
-#>  rho_02: location_(Intercept)_scale_(Intercept)                    
-#>  rho_03: location_(Intercept)_scale_congruencyincongruent          
-#>  rho_12: location_congruencyincongruent_scale_(Intercept)          
-#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent
-#>  rho_23: scale_(Intercept)_scale_congruencyincongruent             
-#>  Post.mean Post.sd Cred.lb Cred.ub
-#>  -0.270    0.147   -0.557   0.014 
-#>   0.655    0.060    0.522   0.757 
-#>  -0.365    0.105   -0.534  -0.131 
-#>  -0.050    0.109   -0.317   0.131 
-#>   0.735    0.082    0.536   0.858 
-#>  -0.564    0.076   -0.687  -0.400 
+#>                                                                     Post.mean Post.sd Cred.lb Cred.ub
+#>  rho_01: location_(Intercept)_location_congruencyincongruent        -0.270    0.147   -0.557   0.014 
+#>  rho_02: location_(Intercept)_scale_(Intercept)                      0.655    0.060    0.522   0.757 
+#>  rho_03: location_(Intercept)_scale_congruencyincongruent           -0.365    0.105   -0.534  -0.131 
+#>  rho_12: location_congruencyincongruent_scale_(Intercept)           -0.050    0.109   -0.317   0.131 
+#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent  0.735    0.082    0.536   0.858 
+#>  rho_23: scale_(Intercept)_scale_congruencyincongruent              -0.564    0.076   -0.687  -0.400 
 #> 
 #> Inclusion Probabilities
-#>                                                                     Pr.k1
-#>  rho_01: location_(Intercept)_location_congruencyincongruent             
-#>  rho_02: location_(Intercept)_scale_(Intercept)                     0    
-#>  rho_03: location_(Intercept)_scale_congruencyincongruent           0.018
-#>  rho_12: location_congruencyincongruent_scale_(Intercept)           0.49 
-#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent 0    
-#>  rho_23: scale_(Intercept)_scale_congruencyincongruent                   
-#>  Pr.k2 Pr.k3
-#>             
-#>  1     0    
-#>  0     0.982
-#>  0.125 0.385
-#>  1     0    
-#>             
+#>                                                                     Pr.k1 Pr.k2 Pr.k3
+#>  rho_01: location_(Intercept)_location_congruencyincongruent                         
+#>  rho_02: location_(Intercept)_scale_(Intercept)                     0     1     0    
+#>  rho_03: location_(Intercept)_scale_congruencyincongruent           0.018 0     0.982
+#>  rho_12: location_congruencyincongruent_scale_(Intercept)           0.49  0.125 0.385
+#>  rho_13: location_congruencyincongruent_scale_congruencyincongruent 0     1     0    
+#>  rho_23: scale_(Intercept)_scale_congruencyincongruent                               
 #> 
 #> ----
 #> 

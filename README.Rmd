@@ -1,7 +1,6 @@
 ---
 output: github_document
 ---
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -9,26 +8,15 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   dev = "png",
   dpi = 500,
-  # fig.asp = 0.8,
-  # fig.width = 7,
-  # out.width = "60%",
   fig.align = "center"
 )
 ```
-<style>
-pre {
-  overflow-x: auto;
-}
-pre code {
-  word-wrap: normal;
-  white-space: pre;
-}
-</style>
+
 
 ## hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 
 
-Random slopes for the location and scale:
+# Random slopes for the location and scale:
 ```{r,eval=F}
 fit <- melsm(fixed_location = rt ~  congruency,
              random_location = ~  congruency | ID,
@@ -44,6 +32,7 @@ fit <- melsm(fixed_location = rt ~  congruency,
 load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit.Rdata")
 ```
 
-```{r, eval=T}
+```{r, eval=T, set-options, echo=-1}
+options(width = 250)
 summary(fit)
 ```
