@@ -1773,7 +1773,14 @@ summary.melsm <- function(object, cred = 0.95, ...){
   print(object$call)
   cat("----\n\n")
   cat("Random Effects Correlations\n")
-  print(rho_helper(object, cred = cred), right = F, row.names= F)
+  cat("Posterior Distirbutions\n")
+  rho_temp <- rho_helper(object, cred = cred)
+  rho_summ_rows <- ncol(rho_temp)
+  cred_summ <- rho_temp[,c(1:5)]
+  prob_summ <- rho_temp[,c(1,6:rho_summ_rows)]
+  print(cred_summ, right = F, row.names = F)
+  cat("\nInclusion Probabilities\n")
+  print(prob_summ, right = F, row.names = F)
   cat("\n----\n")
   cat("\nRandom Effects Standard Deviations\n")
   print(tau_helper(object, cred=cred ), right = F, row.names = F)
