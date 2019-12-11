@@ -14,20 +14,22 @@ knitr::opts_chunk$set(
 
 
 # hypMuVar: Bayesian Hypothesis  <br/> Testing of Mean-Variance Relations
-```{r}
-library(hypMuVar)
-```
 
-### Overview
-### Installation
+
+## Overview
+## Installation
 ```{r, eval=F}
 # install.packages("devtools")
 devtools::install_github("donaldRwilliams/hypMuVar")
 ```
 
 
+```{r}
+library(hypMuVar)
+```
 
-### Random slopes for the location and scale:
+
+## Random slopes for the location and scale:
 ```{r,eval=F}
 fit <- melsm(fixed_location = rt ~  congruency,
              random_location = ~  congruency | ID,
@@ -48,7 +50,7 @@ options(width = 250)
 summary(fit)
 ```
 
-#### Marginal Bayes Factors
+### Marginal Bayes Factors
 k2 (positive component) vs. the compliment
 ```{r}
 bf <- marginal_bf(fit, H1 = "k2")
@@ -64,7 +66,7 @@ bf <- marginal_bf(fit, H1 = "k2", H2 = "k1")
 bf
 ```
 
-#### Posterior Model Probabilities
+### Posterior Model Probabilities
 ```{r}
 prob <- model_prob(fit)
 

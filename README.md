@@ -2,20 +2,23 @@
 hypMuVar: Bayesian Hypothesis <br/> Testing of Mean-Variance Relations
 ======================================================================
 
-``` r
-library(hypMuVar)
-```
+Overview
+--------
 
-### Overview
-
-### Installation
+Installation
+------------
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("donaldRwilliams/hypMuVar")
 ```
 
-### Random slopes for the location and scale:
+``` r
+library(hypMuVar)
+```
+
+Random slopes for the location and scale:
+-----------------------------------------
 
 ``` r
 fit <- melsm(fixed_location = rt ~  congruency,
@@ -90,7 +93,7 @@ summary(fit)
 #> k3: negative slab
 ```
 
-#### Marginal Bayes Factors
+### Marginal Bayes Factors
 
 k2 (positive component) vs. the compliment
 
@@ -141,7 +144,7 @@ bf
 #>  rho_23: scale_(Intercept)_scale_congruencyincongruent                 NA
 ```
 
-#### Posterior Model Probabilities
+### Posterior Model Probabilities
 
 ``` r
 prob <- model_prob(fit)
