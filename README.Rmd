@@ -15,6 +15,12 @@ knitr::opts_chunk$set(
 
 ## hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 
+### Overview
+### Installation
+```{r, eval=F}
+# install.packages("devtools")
+devtools::install_github("donaldRwilliams/hypMuVar")
+```
 
 ### Random slopes for the location and scale:
 ```{r,eval=F}

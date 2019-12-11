@@ -2,6 +2,15 @@
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ----------------------------------------------------------------
 
+### Overview
+
+### Installation
+
+``` r
+# install.packages("devtools")
+devtools::install_github("donaldRwilliams/hypMuVar")
+```
+
 ### Random slopes for the location and scale:
 
 ``` r
