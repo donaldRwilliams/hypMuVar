@@ -1,6 +1,6 @@
 
-hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
-================================================================
+hypMuVar: Bayesian Hypothesis <br/> Testing of Mean-Variance Relations
+======================================================================
 
 ``` r
 library(hypMuVar)
