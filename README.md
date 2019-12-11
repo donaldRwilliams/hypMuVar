@@ -1,6 +1,6 @@
 
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
-----------------------------------------------------------------
+================================================================
 
 ``` r
 library(hypMuVar)
@@ -95,7 +95,9 @@ summary(fit)
 k2 (positive component) vs. the compliment
 
 ``` r
-marginal_bf(fit, H1 = "k2")
+bf <- marginal_bf(fit, H1 = "k2")
+
+bf
 #> hypMuVar: Bayesian Hypothesis Testing 
 #>           of Mean--Variance Relations
 #> Model: MELSM
@@ -118,7 +120,9 @@ k2 (positive component) vs. k1(null component)
 
 ``` r
 # note testing against the compliment is preferable
-marginal_bf(fit, H1 = "k2", H2 = "k1")
+bf <- marginal_bf(fit, H1 = "k2", H2 = "k1")
+
+bf
 #> hypMuVar: Bayesian Hypothesis Testing 
 #>           of Mean--Variance Relations
 #> Model: MELSM
@@ -140,7 +144,9 @@ marginal_bf(fit, H1 = "k2", H2 = "k1")
 #### Posterior Model Probabilities
 
 ``` r
-model_prob(fit)
+prob <- model_prob(fit)
+
+prob
 #> hypMuVar: Bayesian Hypothesis Testing 
 #>           of Mean--Variance Relations
 #> Model: MELSM

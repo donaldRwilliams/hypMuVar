@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ```
 
 
-## hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
+# hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ```{r}
 library(hypMuVar)
 ```
@@ -51,16 +51,22 @@ summary(fit)
 #### Marginal Bayes Factors
 k2 (positive component) vs. the compliment
 ```{r}
-marginal_bf(fit, H1 = "k2")
+bf <- marginal_bf(fit, H1 = "k2")
+
+bf
 ```
 
 k2 (positive component) vs. k1(null component)
 ```{r}
 # note testing against the compliment is preferable
-marginal_bf(fit, H1 = "k2", H2 = "k1")
+bf <- marginal_bf(fit, H1 = "k2", H2 = "k1")
+
+bf
 ```
 
 #### Posterior Model Probabilities
 ```{r}
-model_prob(fit)
+prob <- model_prob(fit)
+
+prob
 ````
