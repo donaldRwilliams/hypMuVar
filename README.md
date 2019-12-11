@@ -2,8 +2,7 @@
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ----------------------------------------------------------------
 
-Random slopes for the location and scale:
-=========================================
+### Random slopes for the location and scale:
 
 ``` r
 fit <- melsm(fixed_location = rt ~  congruency,

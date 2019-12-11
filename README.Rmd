@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ## hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 
 
-# Random slopes for the location and scale:
+### Random slopes for the location and scale:
 ```{r,eval=F}
 fit <- melsm(fixed_location = rt ~  congruency,
              random_location = ~  congruency | ID,
