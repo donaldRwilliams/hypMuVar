@@ -1,4 +1,13 @@
 
+<style>
+pre {
+  overflow-x: auto;
+}
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+</style>
 hypMuVar: Bayesian Hypothesis Testing of Mean-Variance Relations
 ----------------------------------------------------------------
 
