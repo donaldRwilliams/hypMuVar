@@ -9,7 +9,9 @@ This is a dedicated R package for testing mean-variance relations. Currently the
 
 ### Why test mean-variance relations ?
 
-Across the sciences, there is large literature investigating mean-variance relations (e.g., Nakagawa et al. 2015; Xiao, Locey, and White 2015; Moreno et al. 2003). The typical pattern is that means are positively correlated with the variances (or standard deviations). For example, in ecology the variability and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+Across the sciences, there is large literature investigating mean-variance relations (e.g., Nakagawa et al. 2015; Xiao, Locey, and White 2015; Moreno et al. 2003). The typical pattern is that means are positively correlated with variances (or standard deviations). For example, in ecology the variability and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+
+I am a quantitative psychologist by training. In my field, there is also a rich (perhaps the richest!) tradition of studying mean-variane relations...
 
 ### Is hypMuVar necessary ?
 

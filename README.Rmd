@@ -23,10 +23,12 @@ of prior distributions. In future releases, this package will allow for testing 
 ### Why test mean-variance relations ?
 Across the sciences, there is large literature investigating mean-variance 
 relations [e.g., @nakagawa2015meta; @xiao2015process; @moreno2003relationship]. 
-The typical pattern is that means are positively correlated with the 
+The typical pattern is that means are positively correlated with
 variances (or standard deviations). For example, in ecology the variability 
 and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back 
 to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies [@mitchell2016towards]. Apparently, in that field, the MELSM has been termed the  *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+
+I am a quantitative psychologist by training. In my field, there is also a rich (perhaps the richest!) tradition of studying mean-variane relations...
 
 
 ### Is hypMuVar necessary ?
