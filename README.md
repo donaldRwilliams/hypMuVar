@@ -5,6 +5,14 @@ hypMuVar: Bayesian Hypothesis <br/> Testing of Mean-Variance Relations
 Overview
 --------
 
+This is a dedicated R package for testing mean-variance relations. Currently the methodology is for Bayesian mixed-effects *location scale* models (MELSM, mel⋅zem; Hedeker, Mermelstein, and Demirtas 2008), where mean-variance relations are tested in the distribution of random effects. This is accomplished with *covariance* selection, in which the random effects correlations are tested with a mixture of prior distributions. In future releases, this package will allow for testing other mean-variance relations, including linear models (no random effects) and fixed effects in the MELSM.
+
+### Why test mean-variance relations ?
+
+Across the sciences, there is large literature investigating mean-variance relations (e.g., Nakagawa et al. 2015; Xiao, Locey, and White 2015; Moreno et al. 2003). The typical pattern is that means are positively correlated with the variances (or standard deviations). For example, in ecology the variability and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+
+### Is hypMuVar necessary ?
+
 Installation
 ------------
 
@@ -175,3 +183,15 @@ prob
 #> rho_12: location_congruencyincongruent_scale_(Intercept)
 #> rho_13: location_congruencyincongruent_scale_congruencyincongruent
 ```
+
+#### References
+
+Hedeker, Donald, Robin J. Mermelstein, and Hakan Demirtas. 2008. “An application of a mixed-effects location scale model for analysis of ecological momentary assessment (EMA) data.” *Biometrics* 64 (2): 627–34. doi:[10.1111/j.1541-0420.2007.00924.x](https://doi.org/10.1111/j.1541-0420.2007.00924.x).
+
+Mitchell, David J, Benjamin G Fanson, Christa Beckmann, and Peter A Biro. 2016. “Towards Powerful Experimental and Statistical Approaches to Study Intraindividual Variability in Labile Traits.” *Royal Society Open Science* 3 (10). The Royal Society: 160352.
+
+Moreno, Juan, Vicente Polo, Juan J Sanz, Ana de León, Eduardo Mínguez, and José P Veiga. 2003. “The Relationship Between Population Means and Variances in Reproductive Success: Implications of Life History and Ecology.” *Evolutionary Ecology Research* 5 (8). Evolutionary Ecology, Ltd.: 1223–37.
+
+Nakagawa, Shinichi, Robert Poulin, Kerrie Mengersen, Klaus Reinhold, Leif Engqvist, Malgorzata Lagisz, and Alistair M Senior. 2015. “Meta-Analysis of Variation: Ecological and Evolutionary Applications and Beyond.” *Methods in Ecology and Evolution* 6 (2). Wiley Online Library: 143–52.
+
+Xiao, Xiao, Kenneth J Locey, and Ethan P White. 2015. “A Process-Independent Explanation for the General Form of Taylor’s Law.” *The American Naturalist* 186 (2). University of Chicago Press Chicago, IL: E51–E60.

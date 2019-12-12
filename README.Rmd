@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: C:\\Users\\willidon\\Box Sync\\r_packages\\hypMuVar\\man\\bib\\bibliography.bib
 ---
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -15,8 +16,22 @@ knitr::opts_chunk$set(
 
 # hypMuVar: Bayesian Hypothesis  <br/> Testing of Mean-Variance Relations
 
-
 ## Overview
+This is a dedicated R package for testing mean-variance relations. Currently the methodology is for Bayesian mixed-effects *location scale* models [MELSM, mel$\cdot$zem; @Hedeker2008], where mean-variance relations are tested in the distribution of random effects. This is accomplished with *covariance* selection, in which the random effects correlations are tested with a mixture
+of prior distributions. In future releases, this package will allow for testing other mean-variance relations, including linear models (no random effects) and fixed effects in the MELSM.
+
+### Why test mean-variance relations ?
+Across the sciences, there is large literature investigating mean-variance 
+relations [e.g., @nakagawa2015meta; @xiao2015process; @moreno2003relationship]. 
+The typical pattern is that means are positively correlated with the 
+variances (or standard deviations). For example, in ecology the variability 
+and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back 
+to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies [@mitchell2016towards]. Apparently, in that field, the MELSM has been termed the  *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+
+
+### Is hypMuVar necessary ?
+
+
 ## Installation
 ```{r, eval=F}
 # install.packages("devtools")
@@ -72,3 +87,5 @@ prob <- model_prob(fit)
 
 prob
 ````
+
+#### References
