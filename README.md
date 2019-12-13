@@ -106,7 +106,9 @@ plot(ranef(fit_int, cred = 0.90))[[2]] +
                    expand = c(0.015, 0.015)) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" style="display: block; margin: auto;" /> plots the reaction time standard deviations for each person. These are on the log scale. Note that, in a location only mixed effects model, it is assumed that each person is adequately represented by the dotted line. In these data, there is clearly heterogeneous within-person variance.
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="75%" style="display: block; margin: auto;" />
+
+plots the reaction time standard deviations for each person. These are on the log scale. Note that, in a location only mixed effects model, it is assumed that each person is adequately represented by the dotted line. In these data, there is clearly heterogeneous within-person variance.
 
 Further, it is also possible to visualize the relations between the individual-specific effects. Testing these mean-relations in the distribution of random effects is the primary objective in Williams, Rouder, and Rast (2019).
 
@@ -114,7 +116,7 @@ Further, it is also possible to visualize the relations between the individual-s
 cor_plot(fit_int)[[1]]
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="75%" style="display: block; margin: auto;" />
 
 Random slopes for the location and scale:
 -----------------------------------------
