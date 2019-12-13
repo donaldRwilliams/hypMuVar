@@ -72,7 +72,7 @@ As seen in the summary output, component number 2 has an inclusion probability o
 
 The individual-specific effect can also be visualized in a variety of ways. For example,
 
-```{r,  out.width = "500%"}
+```{r,  out.width = "50%"}
 plot(ranef(fit_int, cred = 0.90))[[2]] +
    theme_bw() +
    theme(panel.grid = element_blank(), 
@@ -85,7 +85,7 @@ plots the reaction time standard deviations for each person. These are on the lo
 
 Further, it is also possible to visualize the relations between the individual-specific effects. Testing these mean-relations in the distribution of random effects is the primary objective in @williams2019beneath.
 
-```{r, out.width = "100%"}
+```{r, out.width = "50%"}
 cor_plot(fit_int)[[1]]
 ```
 
