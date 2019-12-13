@@ -9,11 +9,13 @@ This is a dedicated R package for testing mean-variance relations. Currently the
 
 ### Why test mean-variance relations ?
 
-Across the sciences, there is large literature investigating mean-variance relations (e.g., Nakagawa et al. 2015; Xiao, Locey, and White 2015; Moreno et al. 2003). The typical pattern is that means are positively correlated with variances (or standard deviations). For example, in ecology the variability and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/))
+Across the sciences, there is large literature investigating mean-variance relations (e.g., Nakagawa et al. 2015; Xiao, Locey, and White 2015; Moreno et al. 2003). The typical pattern is that means are positively correlated with variances (or standard deviations)[1]. For example, in ecology the variability and mean of species abundance in an area is known as [Taylor's law](https://en.wikipedia.org/wiki/Taylor%27s_law). That Wikipedia page in particular includes interesting references that date back to the 1920's (e.g., Jerzy Neyman studied the mean-variance relation in 1926). Furthermore, a related line of research has set out to identify processes that violate the "law" (e.g., Pratte et al. 2010; Schwarz and Miller 2012)
 
-I am a quantitative psychologist by training. In my field, there is also a rich (perhaps the richest!) tradition of studying mean-variane relations...
+In my field (psychology), there is also a rich (perhaps the richest!) tradition of studying mean-variance relations. The most prominent example comes from cognitive psychology, where a *lawful*, linear relation between reaction time means and standard deviations was proposed in Wagenmakers and Brown (2007). Accordingly, we demonstrated the utility of our methodology in cognitive inhibition tasks (see Williams, Rouder, and Rast 2019).
 
 ### Is hypMuVar necessary ?
+
+**hypMuVar** is not meant to be a general package for mixed-effects modeling (see here [brms](https://github.com/paul-buerkner/brms)). There is certainly a need for **hypMuVar**, however, because the testing strategy is not possible with current software. I anticipate this package will be most useful for researchers specifically interested in testing (possibly confirmatory) hypotheses about the mean-variance relation or the (within-person) variance structure in general (in future releases). This extends inference beyond the customary goal (of testing mean differences) and thus opens the door for answering novel research questions.
 
 Installation
 ------------
@@ -196,4 +198,14 @@ Moreno, Juan, Vicente Polo, Juan J Sanz, Ana de León, Eduardo Mínguez, and Jos
 
 Nakagawa, Shinichi, Robert Poulin, Kerrie Mengersen, Klaus Reinhold, Leif Engqvist, Malgorzata Lagisz, and Alistair M Senior. 2015. “Meta-Analysis of Variation: Ecological and Evolutionary Applications and Beyond.” *Methods in Ecology and Evolution* 6 (2). Wiley Online Library: 143–52.
 
+Pratte, M. S., J. N. Rouder, R. D. Morey, and C. Feng. 2010. “Exploring the differences in distributional properties between Stroop and Simon effects using delta plots.” *Attention, Perception & Psychophysics* 72 (7). Springer-Verlag: 2013–25. doi:[10.3758/APP.72.7.2013](https://doi.org/10.3758/APP.72.7.2013).
+
+Schwarz, Wolf, and Jeff Miller. 2012. “Response time models of delta plots with negative-going slopes.” *Psychonomic Bulletin & Review* 19 (4). Springer-Verlag: 555–74. doi:[10.3758/s13423-012-0254-6](https://doi.org/10.3758/s13423-012-0254-6).
+
+Wagenmakers, Eric-Jan, and Scott Brown. 2007. “On the Linear Relation Between the Mean and the Standard Deviation of a Response Time Distribution.” *Psychological Review* 114 (3). American Psychological Association: 830.
+
+Williams, Donald R, Jeffrey Rouder, and Philippe Rast. 2019. “Beneath the Surface: Unearthing Within-Person Variability and Mean Relations with Bayesian Mixed Models.” PsyArXiv.
+
 Xiao, Xiao, Kenneth J Locey, and Ethan P White. 2015. “A Process-Independent Explanation for the General Form of Taylor’s Law.” *The American Naturalist* 186 (2). University of Chicago Press Chicago, IL: E51–E60.
+
+[1] Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/)).
