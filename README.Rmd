@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 # hypMuVar: Bayesian Hypothesis  <br/> Testing of Mean-Variance Relations
 
 ## Overview
-This is a dedicated R package for testing mean-variance relations. Currently the methodology is for Bayesian mixed-effects *location scale* models [MELSM, mel$\cdot$zem; @Hedeker2008], where mean-variance relations are tested in the distribution of random effects. This is accomplished with *covariance* selection, in which the random effects correlations are tested with a mixture
+This is a dedicated R package for testing mean-variance relations. Currently the methodology is for Bayesian mixed-effects *location scale* models [MELSM, mel$\cdot$zem; @Hedeker2008], where mean and (within-person) variance relations are tested in the distribution of random effects. This is accomplished with *covariance* selection, in which the random effects correlations are tested with a mixture
 of prior distributions. In future releases, this package will allow for testing other mean-variance relations, including linear models (no random effects) and fixed effects in the MELSM.
 
 ### Who actually studies mean-variance relations ?
