@@ -43,6 +43,50 @@ devtools::install_github("donaldRwilliams/hypMuVar")
 
 ```{r}
 library(hypMuVar)
+library(ggplot2)
+```
+
+## Random intercepts for the location and scale
+This model effectively estimates the reaction time means and variances (on the log scale) for each person. These are hierarchical estimates, which provides shrinkage that can improve accuracy. Note a customary, location only, mixed effects model assumes that 
+each person shares a common variance. This is implemented with
+
+```{r, eval = F}
+fit_int <- melsm(fixed_location = rt ~ 1, 
+                 random_location = ~ 1| ID, 
+                 fixed_scale = sigma ~ 1,
+                 random_scale = ~ 1 | ID, k = 3, 
+                 mixture = "SSVS", adapt = 5000, 
+                 iter = 10000, data = stroop)
+```
+Note `mixture = "SSVS"` corresponds to stochastic search variable selection. This is a "spike" and slab approach that utilizes a mixture of prior distribution. There are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to  positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and and slab formulation (`mixture = "KM"`).
+
+```{r,echo=F}
+load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit_int.Rdata")
+```
+
+```{r, eval=T, set-options, echo=-1}
+options(width = 250)
+summary(fit_int)
+```
+As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation.
+
+The individual-specific effect can also be visualized in a variety of ways. For example,
+
+```{r,  out.width = "500%"}
+plot(ranef(fit_int, cred = 0.90))[[2]] +
+   theme_bw() +
+   theme(panel.grid = element_blank(), 
+         legend.position = "none") +
+   scale_x_discrete(labels = c(1, rep("", 119), 121),
+                   expand = c(0.015, 0.015)) 
+```
+plots the reaction time standard deviations for each person. These are on the log scale. Note that, in a location only mixed effects model, it is assumed that each person is adequately represented by the dotted line. In these data, there is clearly heterogeneous within-person variance.
+
+
+Further, it is also possible to visualize the relations between the individual-specific effects. Testing these mean-relations in the distribution of random effects is the primary objective in @williams2019beneath.
+
+```{r, out.width = "100%"}
+cor_plot(fit_int)[[1]]
 ```
 
 
@@ -62,7 +106,7 @@ fit <- melsm(fixed_location = rt ~  congruency,
 load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit.Rdata")
 ```
 
-```{r, eval=T, set-options, echo=-1}
+```{r, eval=T,echo=-1}
 options(width = 250)
 summary(fit)
 ```

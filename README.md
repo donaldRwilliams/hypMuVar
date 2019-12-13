@@ -27,7 +27,94 @@ devtools::install_github("donaldRwilliams/hypMuVar")
 
 ``` r
 library(hypMuVar)
+library(ggplot2)
 ```
+
+Random intercepts for the location and scale
+--------------------------------------------
+
+This model effectively estimates the reaction time means and variances (on the log scale) for each person. These are hierarchical estimates, which provides shrinkage that can improve accuracy. Note a customary, location only, mixed effects model assumes that each person shares a common variance. This is implemented with
+
+``` r
+fit_int <- melsm(fixed_location = rt ~ 1, 
+                 random_location = ~ 1| ID, 
+                 fixed_scale = sigma ~ 1,
+                 random_scale = ~ 1 | ID, k = 3, 
+                 mixture = "SSVS", adapt = 5000, 
+                 iter = 10000, data = stroop)
+```
+
+Note `mixture = "SSVS"` corresponds to stochastic search variable selection. This is a "spike" and slab approach that utilizes a mixture of prior distribution. There are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and and slab formulation (`mixture = "KM"`).
+
+``` r
+summary(fit_int)
+#> hypMuVar: Bayesian Hypothesis Testing 
+#>           of Mean--Variance Relations
+#> Model: MELSM
+#> Chains: 4 
+#> Samples: 40000 
+#> Mixture: SSVS 
+#> Rho Test: muvar 
+#> Credible Interval: 0.95 
+#> ----
+#> Call:
+#> melsm.default(fixed_location = rt ~ 1, random_location = ~1 | 
+#>     ID, fixed_scale = sigma ~ 1, random_scale = ~1 | ID, mixture = "SSVS", 
+#>     k = 3, adapt = 5000, iter = 10000, data = stroop)
+#> ----
+#> 
+#> Random Effects Correlations
+#> Posterior Distirbutions
+#>                                                 Post.mean Post.sd Cred.lb Cred.ub
+#>  rho_01: location_(Intercept)_scale_(Intercept) 0.642     0.058   0.518   0.744  
+#> 
+#> Inclusion Probabilities
+#>                                                 Pr.k1 Pr.k2 Pr.k3
+#>  rho_01: location_(Intercept)_scale_(Intercept) 0     1     0    
+#> 
+#> ----
+#> 
+#> Random Effects Standard Deviations
+#>                              Post.mean Post.sd Cred.lb Cred.ub
+#>  tau_0: location_(Intercept) 0.097     0.006   0.085   0.111  
+#>  tau_1: scale_(Intercept)    0.272     0.019   0.238   0.311  
+#> 
+#> ----
+#> 
+#> Fixed Effects
+#>                               Post.mean Post.sd Cred.lb Cred.ub
+#>  beta_0: location_(Intercept)  0.739    0.009    0.721   0.757 
+#>  eta_0:  scale_(Intercept)    -1.670    0.027   -1.723  -1.617 
+#> 
+#> ----
+#> note 
+#> k1: 'spike' 
+#> k2: positive slab 
+#> k3: negative slab
+```
+
+As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation.
+
+The individual-specific effect can also be visualized in a variety of ways. For example,
+
+``` r
+plot(ranef(fit_int, cred = 0.90))[[2]] +
+   theme_bw() +
+   theme(panel.grid = element_blank(), 
+         legend.position = "none") +
+   scale_x_discrete(labels = c(1, rep("", 119), 121),
+                   expand = c(0.015, 0.015)) 
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="500%" style="display: block; margin: auto;" /> plots the reaction time standard deviations for each person. These are on the log scale. Note that, in a location only mixed effects model, it is assumed that each person is adequately represented by the dotted line. In these data, there is clearly heterogeneous within-person variance.
+
+Further, it is also possible to visualize the relations between the individual-specific effects. Testing these mean-relations in the distribution of random effects is the primary objective in Williams, Rouder, and Rast (2019).
+
+``` r
+cor_plot(fit_int)[[1]]
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" />
 
 Random slopes for the location and scale:
 -----------------------------------------

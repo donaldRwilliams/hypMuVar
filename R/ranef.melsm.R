@@ -8,8 +8,9 @@
 #' @note this function differs from \code{nlme},
 #' in that additional information (not only the random effects) is returned in a list. This is used
 #' to plot the random effects (\code{\link{plot.ranef.melsm}})
-#' @importFrom nlme ranef
 #' @export
+#' @importFrom nlme ranef
+#' @export ranef
 #'
 #' @examples
 #' \dontrun{
