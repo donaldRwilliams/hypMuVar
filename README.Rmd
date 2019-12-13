@@ -70,7 +70,7 @@ summary(fit_int)
 ```
 As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation.
 
-The individual-specific effect can also be visualized in a variety of ways. For example,
+The individual-specific effects can also be visualized in a variety of ways. For example,
 
 ```{r,  out.width = "75%"}
 plot(ranef(fit_int, cred = 0.90))[[2]] +
