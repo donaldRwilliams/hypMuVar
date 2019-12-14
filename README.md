@@ -38,13 +38,15 @@ This model effectively estimates the reaction time means and variances (on the l
 ``` r
 fit_int <- melsm(fixed_location = rt ~ 1, 
                  random_location = ~ 1| ID, 
-                 fixed_scale = sigma ~ 1,
+                 fixed_scale = sigma ~ 1, 
                  random_scale = ~ 1 | ID, k = 3, 
                  mixture = "SSVS", adapt = 5000, 
-                 iter = 10000, data = stroop)
+                 iter = 10000, 
+                 rho_test = "muvar",
+                 data = stroop)
 ```
 
-Note `mixture = "SSVS"` corresponds to stochastic search variable selection. This is a "spike" and slab approach that utilizes a mixture of prior distribution. There are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and and slab formulation (`mixture = "KM"`).
+Note `mixture = "SSVS"` corresponds to stochastic search variable selection (George and McCulloch 1993). This is a "spike" and slab approach that utilizes a mixture of prior distributions (see here for reviews O’Hara and Sillanpää 2009; Malsiner-Walli and Wagner 2011). In the case of SSVS, there are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and slab formulation (T. J. Mitchell and Beauchamp 1988; Kuo and Mallick 1998).
 
 ``` r
 summary(fit_int)
@@ -93,12 +95,14 @@ summary(fit_int)
 #> k3: negative slab
 ```
 
-As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation.
+As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation. Furthermore, it is possible to test all random effects correlations by setting `rho_test = "all"`. This would employ the chosen mixture approach for all off-diagonal elements in the random effects covariance matrix.
 
 The individual-specific effects can also be visualized in a variety of ways. For example,
 
 ``` r
-plot(ranef(fit_int, cred = 0.90))[[2]] +
+# coefficients
+coefs <- coef(fit_int, cred = 0.90)
+plot(coefs)[[2]] +
    theme_bw() +
    theme(panel.grid = element_blank(), 
          legend.position = "none") +
@@ -279,13 +283,23 @@ prob
 
 #### References
 
+George, E I, and R E McCulloch. 1993. “Variable selection via Gibbs sampling.” *Journal of the American Statistical Association* 88 (August 2015): 881–89. doi:[10.1080/01621459.1993.10476353](https://doi.org/10.1080/01621459.1993.10476353).
+
 Hedeker, Donald, Robin J. Mermelstein, and Hakan Demirtas. 2008. “An application of a mixed-effects location scale model for analysis of ecological momentary assessment (EMA) data.” *Biometrics* 64 (2): 627–34. doi:[10.1111/j.1541-0420.2007.00924.x](https://doi.org/10.1111/j.1541-0420.2007.00924.x).
 
+Kuo, Lynn, and Bani Mallick. 1998. “Variable Selection for Regression Models.” *Sankhyā: The Indian Journal of Statistics, Series B* 60 (1): 65–81.
+
+Malsiner-Walli, Gertraud, and Helga Wagner. 2011. “Comparing Spike and Slab Priors for Bayesian Variable Selection.” *Austrian Journal of Statistics* 40 (4): 241–64.
+
 Mitchell, David J, Benjamin G Fanson, Christa Beckmann, and Peter A Biro. 2016. “Towards Powerful Experimental and Statistical Approaches to Study Intraindividual Variability in Labile Traits.” *Royal Society Open Science* 3 (10). The Royal Society: 160352.
+
+Mitchell, T J, and J J Beauchamp. 1988. “Bayesian variable selection in linear regression (with discussion).” *J. Amer. Statist. Assoc.* 83 (1988): 1023–36.
 
 Moreno, Juan, Vicente Polo, Juan J Sanz, Ana de León, Eduardo Mínguez, and José P Veiga. 2003. “The Relationship Between Population Means and Variances in Reproductive Success: Implications of Life History and Ecology.” *Evolutionary Ecology Research* 5 (8). Evolutionary Ecology, Ltd.: 1223–37.
 
 Nakagawa, Shinichi, Robert Poulin, Kerrie Mengersen, Klaus Reinhold, Leif Engqvist, Malgorzata Lagisz, and Alistair M Senior. 2015. “Meta-Analysis of Variation: Ecological and Evolutionary Applications and Beyond.” *Methods in Ecology and Evolution* 6 (2). Wiley Online Library: 143–52.
+
+O’Hara, R. B., and M. J. Sillanpää. 2009. “A review of bayesian variable selection methods: What, how and which.” *Bayesian Analysis* 4 (1): 85–118. doi:[10.1214/09-BA403](https://doi.org/10.1214/09-BA403).
 
 Pratte, M. S., J. N. Rouder, R. D. Morey, and C. Feng. 2010. “Exploring the differences in distributional properties between Stroop and Simon effects using delta plots.” *Attention, Perception & Psychophysics* 72 (7). Springer-Verlag: 2013–25. doi:[10.3758/APP.72.7.2013](https://doi.org/10.3758/APP.72.7.2013).
 
@@ -297,4 +311,4 @@ Williams, Donald R, Jeffrey Rouder, and Philippe Rast. 2019. “Beneath the Surf
 
 Xiao, Xiao, Kenneth J Locey, and Ethan P White. 2015. “A Process-Independent Explanation for the General Form of Taylor’s Law.” *The American Naturalist* 186 (2). University of Chicago Press Chicago, IL: E51–E60.
 
-[1] Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/)).
+[1] Interestingly, I recently came across a paper investigating the mean-variance relation in guppies (D. J. Mitchell et al. 2016). Apparently, in that field, the MELSM has been termed the *doubly hierarchical model* (see here [dhglm](https://rdrr.io/cran/dhglm/)).

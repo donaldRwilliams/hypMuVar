@@ -53,12 +53,14 @@ each person shares a common variance. This is implemented with
 ```{r, eval = F}
 fit_int <- melsm(fixed_location = rt ~ 1, 
                  random_location = ~ 1| ID, 
-                 fixed_scale = sigma ~ 1,
+                 fixed_scale = sigma ~ 1, 
                  random_scale = ~ 1 | ID, k = 3, 
                  mixture = "SSVS", adapt = 5000, 
-                 iter = 10000, data = stroop)
+                 iter = 10000, 
+                 rho_test = "muvar",
+                 data = stroop)
 ```
-Note `mixture = "SSVS"` corresponds to stochastic search variable selection. This is a "spike" and slab approach that utilizes a mixture of prior distribution. There are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to  positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and and slab formulation (`mixture = "KM"`).
+Note `mixture = "SSVS"` corresponds to stochastic search variable selection [@George1993]. This is a "spike" and slab approach that utilizes a mixture of prior distributions [see here for reviews @OHara2009; @Malsiner-Walli2011]. In the case of SSVS, there are typically two normal distributions, with the "spike" concentrated around zero. One innovation of **hypMuVar** is to extend that approach to several mixture components. `k = 3` specifies a prior comprised of three distributions that place restrictions to  positive values (k = 2), negative values (k = 3), or a null region (k = 1). Setting `k = 2` is also an option, as well as the Dirac spike and slab formulation [ @Mitchell1988; @kuo_mallick].
 
 ```{r,echo=F}
 load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit_int.Rdata")
@@ -68,12 +70,14 @@ load("C:/Users/willidon/Box Sync/r_packages/rmd_files/fit_int.Rdata")
 options(width = 250)
 summary(fit_int)
 ```
-As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation.
+As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation. Furthermore, it is possible to test all random effects correlations by setting `rho_test = "all"`. This would employ the chosen mixture approach for all off-diagonal elements in the random effects covariance matrix.
 
 The individual-specific effects can also be visualized in a variety of ways. For example,
 
 ```{r,  out.width = "75%"}
-plot(ranef(fit_int, cred = 0.90))[[2]] +
+# coefficients
+coefs <- coef(fit_int, cred = 0.90)
+plot(coefs)[[2]] +
    theme_bw() +
    theme(panel.grid = element_blank(), 
          legend.position = "none") +
