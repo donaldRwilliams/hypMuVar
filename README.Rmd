@@ -136,6 +136,15 @@ bf
 prob <- model_prob(fit)
 
 prob
-````
+```
 
+### Confirmatory Hypothesis Testing
+```{r}
+hyp <- list(h1 = c("rho_02 = k2", 
+                   "rho_03 = k2", 
+                   "rho_12 = k2", 
+                   "rho_13 = k2"))
+
+confirm(fit, hyp = hyp)
+```
 #### References

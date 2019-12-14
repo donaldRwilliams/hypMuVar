@@ -281,6 +281,31 @@ prob
 #> rho_13: location_congruencyincongruent_scale_congruencyincongruent
 ```
 
+### Confirmatory Hypothesis Testing
+
+``` r
+hyp <- list(h1 = c("rho_02 = k2", 
+                   "rho_03 = k2", 
+                   "rho_12 = k2", 
+                   "rho_13 = k2"))
+
+confirm(fit, hyp = hyp)
+#> hypMuVar: Bayesian Hypothesis Testing 
+#>           of Mean--Variance Relations
+#> Model: MELSM
+#> Mixture: SSVS 
+#> ----
+#> Hypotheses
+#> H1: rho_02 = k2 rho_03 = k2 rho_12 = k2 rho_13 = k2 
+#> H2: compliment
+#> 
+#> BF_12 = 0.01 
+#> ----
+#>  Hyp Post.prob Prior.Prob
+#>   H1         0      0.012
+#>   H2         1      0.988
+```
+
 #### References
 
 George, E I, and R E McCulloch. 1993. “Variable selection via Gibbs sampling.” *Journal of the American Statistical Association* 88 (August 2015): 881–89. doi:[10.1080/01621459.1993.10476353](https://doi.org/10.1080/01621459.1993.10476353).
