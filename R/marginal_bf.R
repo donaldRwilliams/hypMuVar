@@ -19,7 +19,7 @@ marginal_bf <- function(object,
   }
 
   # rho summary
-  rho_summary <- rho_helper(object, cred = 0.95)
+  rho_summary <- hypMuVar:::rho_helper(object, cred = 0.95)
 
   # mixture SSVS
   if(object$mixture == "SSVS"){
@@ -50,11 +50,10 @@ marginal_bf <- function(object,
       # post probs
       post_probs <- rho_summary[,6:8]
       post_probs <- sapply(post_probs,as.numeric)
-      # set 0s to NA (off-diagonal elements)
-      # post_probs[post_probs == ""] <- NA
 
-      # remove NA
-      # post_probs <- na.omit(post_probs)
+      if(!is.matrix(post_probs)) {
+        post_probs <- as.matrix(t(post_probs))
+      }
 
       # h1 post probs
       H1_probs <- post_probs[,grep(H1, x = colnames(post_probs))]
@@ -62,9 +61,16 @@ marginal_bf <- function(object,
       # compliment
       if(H2 == "compliment"){
 
-        BF_12 <- (H1_probs / rowSums(post_probs[,-grep(H1,
-                                                       x = colnames(post_probs))])) / 0.5
+        if(nrow(post_probs) == 1){
 
+          BF_12 <- (H1_probs  / sum(post_probs[,-grep(H1,
+                                                 x = colnames(post_probs))])) / 0.5
+
+        } else {
+
+        BF_12 <- (H1_probs / rowSums((post_probs[,-grep(H1,
+                                                       x = colnames(post_probs))]))) / 0.5
+}
       } else {
 
         BF_12 <- H1_probs /  post_probs[,grep(H2, x = colnames(post_probs))]

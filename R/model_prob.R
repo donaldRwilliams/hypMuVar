@@ -47,12 +47,16 @@ model_prob <- function(object, ...){
   post_probs <- tab_prob / n_samps
   post_probs <- post_probs[order(post_probs, decreasing = T)]
 
+  if(!class(post_probs) == "table"){
+    post_probs <- as.table(post_probs)
+}
+
   # number of models visited
   n_mods_visited <- dim(post_probs)
 
   # number of tested correlations
   n_cors <- ncol(k_indicators)
-  rho_sum <- rho_helper(object, cred = 0.95)
+  rho_sum <- hypMuVar:::rho_helper(object, cred = 0.95)
   rho_sum[rho_sum==""]<-NA
   rho_sum <- na.omit(rho_sum)
   rho_split <- strsplit(as.character(rho_sum[,1]), split = ":")

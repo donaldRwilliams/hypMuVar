@@ -73,7 +73,6 @@ summary(fit_int)
 As seen in the summary output, component number 2 has an inclusion probability of 1. This results in an infinite Bayes factor in favor of a positive relation. Furthermore, it is possible to test all random effects correlations by setting `rho_test = "all"`. This would employ the chosen mixture approach for all off-diagonal elements in the random effects covariance matrix.
 
 The individual-specific effects can also be visualized in a variety of ways. For example,
-
 ```{r,  out.width = "75%"}
 # coefficients
 coefs <- coef(fit_int, cred = 0.90)
