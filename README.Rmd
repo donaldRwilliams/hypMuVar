@@ -35,6 +35,7 @@ In my field (psychology), there is also a rich (perhaps the richest!) tradition 
 **hypMuVar** is not meant to be a general package for mixed-effects modeling (see here [brms](https://github.com/paul-buerkner/brms)). There is certainly a need for **hypMuVar**, however, because the testing strategy is not possible with current software. I anticipate this package will be most useful for researchers specifically interested in testing (possibly confirmatory) hypotheses about the mean-variance relation or the (within-person) variance structure in general (in future releases). This extends inference beyond the customary goal (of testing mean differences) and thus opens the door for answering novel research questions.
 
 ## Installation
+Note you will also have to intall jags (see here [download page](https://sourceforge.net/projects/mcmc-jags/)).
 ```{r, eval=F}
 # install.packages("devtools")
 devtools::install_github("donaldRwilliams/hypMuVar")

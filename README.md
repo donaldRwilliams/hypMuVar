@@ -20,6 +20,8 @@ In my field (psychology), there is also a rich (perhaps the richest!) tradition 
 Installation
 ------------
 
+Note you will also have to intall jags (see here [download page](https://sourceforge.net/projects/mcmc-jags/))
+
 ``` r
 # install.packages("devtools")
 devtools::install_github("donaldRwilliams/hypMuVar")
